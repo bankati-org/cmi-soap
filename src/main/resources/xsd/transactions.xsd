@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://bankati.com/cmi/transaction"
+           targetNamespace="http://bankati.com/cmi/transaction"
+           elementFormDefault="qualified">
+
+    <!-- Définition de l'énumération TransactionStatus -->
+    <xs:simpleType name="TransactionStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="COMPLETED"/>
+            <xs:enumeration value="FAILED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Définition du type complexe Transaction -->
+    <xs:complexType name="Transaction">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="externalTransactionId" type="xs:string" minOccurs="0"/>
+            <xs:element name="senderAccountId" type="xs:string"/>
+            <xs:element name="recipientAccountId" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+            <xs:element name="transactionDate" type="xs:dateTime"/>
+            <xs:element name="status" type="tns:TransactionStatus"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <xs:element name="transactionType" type="xs:string" minOccurs="0"/>
+            <xs:element name="currency" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Définition des éléments de requête et réponse pour processTransaction -->
+    <xs:element name="ProcessTransactionRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transaction" type="tns:Transaction"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ProcessTransactionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transaction" type="tns:Transaction"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition des éléments de requête et réponse pour getTransactions -->
+    <xs:element name="GetTransactionsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountNumber" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetTransactionsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transaction" type="tns:Transaction" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition d'un type pour les erreurs -->
+    <xs:complexType name="ServiceFault">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

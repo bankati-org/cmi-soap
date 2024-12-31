@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.bankati.com/accounts"
+           xmlns="http://www.bankati.com/accounts"
+           elementFormDefault="qualified">
+    <!-- Define the Account element -->
+    <xs:element name="account">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long" minOccurs="0"/>
+                <xs:element name="accountNumber" type="xs:string"/>
+                <xs:element name="balance" type="xs:double"/>
+                <xs:element name="currency" type="xs:string"/>
+                <xs:element name="ownerId" type="xs:string"/>
+                <xs:element name="ownerCin" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Optional, define restrictions based on annotations like @NotNull and @Size -->
+    <xs:element name="accountNumber">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="255"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="currency">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:maxLength value="3"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="ownerCin">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="255"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+</xs:schema>

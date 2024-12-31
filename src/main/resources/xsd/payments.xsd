@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://bankati.com/cmi/payment"
+           targetNamespace="http://bankati.com/cmi/payment"
+           elementFormDefault="qualified">
+
+    <!-- Type complexe pour PaymentRequest -->
+    <xs:complexType name="PaymentRequest">
+        <xs:sequence>
+            <xs:element name="sourceAccount" type="xs:string"/>
+            <xs:element name="targetAccount" type="xs:string"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour PaymentResponse -->
+    <xs:complexType name="PaymentResponse">
+        <xs:sequence>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Élément de requête pour la validation de paiement -->
+    <xs:element name="validatePaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="paymentRequest" type="tns:PaymentRequest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Élément de réponse pour la validation de paiement -->
+    <xs:element name="validatePaymentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="paymentResponse" type="tns:PaymentResponse"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Type pour les erreurs de validation -->
+    <xs:complexType name="ValidationFault">
+        <xs:sequence>
+            <xs:element name="errorCode" type="xs:string"/>
+            <xs:element name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Élément pour les erreurs de validation -->
+    <xs:element name="ValidationException">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fault" type="tns:ValidationFault"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
