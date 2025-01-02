@@ -1,7 +1,7 @@
-package com.bankati.cmi.Transaction.mapper;
+package com.bankati.cmi.transaction.mapper;
 
-import com.bankati.cmi.Transaction.dto.TransactionDto;
-import com.bankati.cmi.Transaction.model.Transaction;
+import com.bankati.cmi.transaction.dto.TransactionDto;
+import com.bankati.cmi.transaction.model.Transaction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

@@ -1,4 +1,4 @@
-package com.bankati.cmi.Transaction.enums;
+package com.bankati.cmi.transaction.enums;
 
 public enum TransactionStatus {
     PENDING,

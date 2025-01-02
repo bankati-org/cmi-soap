@@ -1,11 +1,13 @@
-package com.bankati.cmi.Account.repository;
+package com.bankati.cmi.account.repository;
 
-import com.bankati.cmi.Account.model.Account;
+import com.bankati.cmi.account.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account,Long> {
     Account findAccountByAccountNumber(String accountNumber);
-    boolean existsAccountByOwnerCin(String cin);
+    boolean existsAccountByOwnerCinOrOwnerId(String cin,String ownerId);
+
+    boolean existsByAccountNumber(String accountNumber);
 }

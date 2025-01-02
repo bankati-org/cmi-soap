@@ -1,6 +1,6 @@
-package com.bankati.cmi.Transaction.model;
+package com.bankati.cmi.transaction.model;
 
-import com.bankati.cmi.Transaction.enums.TransactionStatus;
+import com.bankati.cmi.transaction.enums.TransactionStatus;
 import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;

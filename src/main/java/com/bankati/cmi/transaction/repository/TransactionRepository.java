@@ -1,6 +1,6 @@
-package com.bankati.cmi.Transaction.repository;
+package com.bankati.cmi.transaction.repository;
 
-import com.bankati.cmi.Transaction.model.Transaction;
+import com.bankati.cmi.transaction.model.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

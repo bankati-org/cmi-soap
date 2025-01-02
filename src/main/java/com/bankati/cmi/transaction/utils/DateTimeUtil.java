@@ -1,4 +1,4 @@
-package com.bankati.cmi.Transaction.utils;
+package com.bankati.cmi.transaction.utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

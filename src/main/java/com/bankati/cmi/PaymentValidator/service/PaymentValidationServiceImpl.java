@@ -1,7 +1,7 @@
 package com.bankati.cmi.PaymentValidator.service;
 
-import com.bankati.cmi.Account.model.Account;
-import com.bankati.cmi.Account.service.AccountService;
+import com.bankati.cmi.account.model.Account;
+import com.bankati.cmi.account.service.AccountService;
 import com.bankati.cmi.payment.PaymentRequest;
 import com.bankati.cmi.payment.PaymentResponse;
 import com.bankati.cmi.payment.ValidatePaymentResponse;
@@ -24,6 +24,7 @@ public class PaymentValidationServiceImpl implements PaymentValidationService {
             paymentResponse.setMessage("Compte source introuvable");
             paymentResponse.setStatus("FAILED");
             validatePaymentResponse.setPaymentResponse(paymentResponse);
+            return validatePaymentResponse;
         }
 
         Account destinationAccount = accountService.getAccountDetails(paymentRequest.getTargetAccount());
@@ -31,14 +32,15 @@ public class PaymentValidationServiceImpl implements PaymentValidationService {
             paymentResponse.setMessage("Compte destinataire introuvable");
             paymentResponse.setStatus("FAILED");
             validatePaymentResponse.setPaymentResponse(paymentResponse);
+            return validatePaymentResponse;
         }
 
         // Vérifier que le solde est suffisant
-        assert account != null;
         if (account.getBalance() < paymentRequest.getAmount() || paymentRequest.getAmount() <= 0) {
             paymentResponse.setMessage("Solde insuffisant pour effectuer le paiement");
             paymentResponse.setStatus("FAILED");
             validatePaymentResponse.setPaymentResponse(paymentResponse);
+            return validatePaymentResponse;
         }
         // Validation réussie
         return validatePaymentResponse;

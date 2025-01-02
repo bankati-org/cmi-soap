@@ -1,16 +1,16 @@
-package com.bankati.cmi.Transaction.service;
+package com.bankati.cmi.transaction.service;
 
-import com.bankati.cmi.Account.service.AccountService;
-import com.bankati.cmi.Transaction.dto.TransactionDto;
-import com.bankati.cmi.Transaction.mapper.TransactionMapper;
-import com.bankati.cmi.Transaction.repository.TransactionRepository;
+import com.bankati.cmi.account.service.AccountService;
+import com.bankati.cmi.transaction.dto.TransactionDto;
+import com.bankati.cmi.transaction.mapper.TransactionMapper;
+import com.bankati.cmi.transaction.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.bankati.cmi.Transaction.utils.DateTimeUtil.LocalDateTimetoString;
+import static com.bankati.cmi.transaction.utils.DateTimeUtil.LocalDateTimetoString;
 
 @Service
 @RequiredArgsConstructor

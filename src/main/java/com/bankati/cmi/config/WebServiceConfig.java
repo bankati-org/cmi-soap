@@ -25,6 +25,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean<>(servlet, "/ws/*");
     }
 
+
     @Bean
     public XsdSchema accountSchema() {
         return new SimpleXsdSchema(new ClassPathResource("xsd/accounts.xsd"));
@@ -40,16 +41,17 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new SimpleXsdSchema(new ClassPathResource("xsd/payments.xsd"));
     }
 
-    // Définitions WSDL pour chaque service
-    @Bean(name = "accounts")
-    public DefaultWsdl11Definition accountsWsdl(XsdSchema accountSchema) {
+    @Bean(name = "payments")
+    public DefaultWsdl11Definition paymentsWsdl(XsdSchema paymentSchema) {
         DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
-        wsdl.setPortTypeName("AccountsPort");
-        wsdl.setLocationUri("/ws/accounts");
-        wsdl.setTargetNamespace("http://bankati.com/cmi/account");
-        wsdl.setSchema(accountSchema);
+        wsdl.setPortTypeName("PaymentsPort");
+        wsdl.setLocationUri("/ws/payments");
+        wsdl.setTargetNamespace("http://bankati.com/cmi/payment");
+        wsdl.setSchema(paymentSchema);
         return wsdl;
     }
+    // Définitions WSDL pour chaque service
+
 
     @Bean(name = "transactions")
     public DefaultWsdl11Definition transactionsWsdl(XsdSchema transactionSchema) {
@@ -61,13 +63,14 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return wsdl;
     }
 
-    @Bean(name = "payments")
-    public DefaultWsdl11Definition paymentsWsdl(XsdSchema paymentSchema) {
+    @Bean(name = "accounts")
+    public DefaultWsdl11Definition accountsWsdl(XsdSchema accountSchema) {
         DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
-        wsdl.setPortTypeName("PaymentsPort");
-        wsdl.setLocationUri("/ws/payments");
-        wsdl.setTargetNamespace("http://bankati.com/cmi/payment");
-        wsdl.setSchema(paymentSchema);
+        wsdl.setPortTypeName("AccountsPort");
+        wsdl.setLocationUri("/ws/accounts");
+        wsdl.setTargetNamespace("http://www.bankati.com/cmi/account");
+        wsdl.setSchema(accountSchema);
         return wsdl;
     }
+
 }

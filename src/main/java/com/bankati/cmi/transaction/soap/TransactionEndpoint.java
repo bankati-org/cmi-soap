@@ -1,7 +1,7 @@
-package com.bankati.cmi.Transaction.soap;
+package com.bankati.cmi.transaction.soap;
 
-import com.bankati.cmi.Transaction.dto.TransactionDto;
-import com.bankati.cmi.Transaction.service.TransactionService;
+import com.bankati.cmi.transaction.dto.TransactionDto;
+import com.bankati.cmi.transaction.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

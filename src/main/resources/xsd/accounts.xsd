@@ -1,47 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.bankati.com/accounts"
-           xmlns="http://www.bankati.com/accounts"
+           xmlns="http://www.bankati.com/cmi/account"
+           targetNamespace="http://www.bankati.com/cmi/account"
            elementFormDefault="qualified">
-    <!-- Define the Account element -->
-    <xs:element name="account">
+
+    <!-- Type complexe pour la requête de création de compte -->
+    <xs:complexType name="CreateAccountRequest">
+        <xs:sequence>
+            <xs:element name="ownerId" type="xs:string"/>
+            <xs:element name="ownerCin" type="xs:string"/>
+            <xs:element name="currency" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour la réponse de création de compte -->
+    <xs:complexType name="CreateAccountResponse">
+        <xs:sequence>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour les détails d'un compte -->
+    <xs:complexType name="Account">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="accountNumber" type="xs:string"/>
+            <xs:element name="balance" type="xs:double"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="ownerId" type="xs:string"/>
+            <xs:element name="ownerCin" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Élément racine pour la requête de création de compte -->
+    <xs:element name="ValidateCreateAccountRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="id" type="xs:long" minOccurs="0"/>
-                <xs:element name="accountNumber" type="xs:string"/>
-                <xs:element name="balance" type="xs:double"/>
-                <xs:element name="currency" type="xs:string"/>
-                <xs:element name="ownerId" type="xs:string"/>
-                <xs:element name="ownerCin" type="xs:string"/>
+                <xs:element name="createAccountRequest" type="CreateAccountRequest"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <!-- Optional, define restrictions based on annotations like @NotNull and @Size -->
-    <xs:element name="accountNumber">
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:minLength value="1"/>
-                <xs:maxLength value="255"/>
-            </xs:restriction>
-        </xs:simpleType>
+    <!-- Élément racine pour la réponse de création de compte -->
+    <xs:element name="ValidateCreateAccountResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="createAccountResponse" type="CreateAccountResponse"/>
+            </xs:sequence>
+        </xs:complexType>
     </xs:element>
 
-    <xs:element name="currency">
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:maxLength value="3"/>
-            </xs:restriction>
-        </xs:simpleType>
+    <!-- Élément racine pour la requête de récupération des détails d'un compte -->
+    <xs:element name="GetAccountDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accountNumber" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
     </xs:element>
 
-    <xs:element name="ownerCin">
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:minLength value="1"/>
-                <xs:maxLength value="255"/>
-            </xs:restriction>
-        </xs:simpleType>
+    <!-- Élément racine pour la réponse de récupération des détails d'un compte -->
+    <xs:element name="GetAccountDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="account" type="Account"/>
+            </xs:sequence>
+        </xs:complexType>
     </xs:element>
 
 </xs:schema>
