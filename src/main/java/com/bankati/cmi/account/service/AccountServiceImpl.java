@@ -78,9 +78,8 @@ public class AccountServiceImpl implements AccountService {
 
     public static String generateRandom16Digits() {
         Random random = new Random();
-        long firstPart = (long) (Math.random() * 9_000_000_000_000_0000L) + 1_000_000_000_000_0000L;
-        int secondPart = random.nextInt(10);
-        return firstPart + String.valueOf(secondPart);
+        long firstPart = (long) (Math.random() * 9_000_000_000_000_000L) + 1_000_000_000_000_000L;
+        return String.valueOf(firstPart);
     }
 
 }
