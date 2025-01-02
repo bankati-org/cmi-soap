@@ -34,8 +34,9 @@ public class AccountServiceImpl implements AccountService {
         ValidateCreateAccountResponse validateCreateAccountResponse = new ValidateCreateAccountResponse();
         CreateAccountResponse createAccountResponse = new CreateAccountResponse();
         if (AccountExist(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin(), validateCreateAccountRequest.getCreateAccountRequest().getOwnerId())) {
-            validateCreateAccountResponse.getCreateAccountResponse().setMessage("Account already exists for this client !!!");
-            validateCreateAccountResponse.getCreateAccountResponse().setStatus("FAILED");
+            createAccountResponse.setMessage("Account already exists for this client !!!");
+            createAccountResponse.setStatus("FAILED");
+            validateCreateAccountResponse.setCreateAccountResponse(createAccountResponse);
             log.info(" message : {}", validateCreateAccountResponse.getCreateAccountResponse().getMessage());
             return validateCreateAccountResponse;
         }
