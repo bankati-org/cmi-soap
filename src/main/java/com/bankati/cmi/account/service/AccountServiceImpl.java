@@ -5,11 +5,14 @@ import com.bankati.cmi.account.ValidateCreateAccountRequest;
 import com.bankati.cmi.account.ValidateCreateAccountResponse;
 import com.bankati.cmi.account.model.Account;
 import com.bankati.cmi.account.repository.AccountRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Random;
 @Service
 @RequiredArgsConstructor
@@ -44,6 +47,7 @@ public class AccountServiceImpl implements AccountService {
         Account account = Account.builder()
                 .accountNumber(accountNumber)
                 .balance(0.0)
+                .createdAt(new Date())
                 .currency(validateCreateAccountRequest.getCreateAccountRequest().getCurrency())
                 .ownerCin(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin())
                 .ownerId(validateCreateAccountRequest.getCreateAccountRequest().getOwnerId())
@@ -78,9 +82,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public static String generateRandom16Digits() {
-        Random random = new Random();
         long firstPart = (long) (Math.random() * 9_000_000_000_000_000L) + 1_000_000_000_000_000L;
         return String.valueOf(firstPart);
+    }
+
+
+    @Transactional
+    @Override
+    public Account updateAccount(String ownerId, Double amount) {
+        Account account = accountRepository.findAccountByOwnerId(ownerId);
+        Double newBalance =  account.getBalance() + amount;
+        account.setBalance(newBalance);
+        return accountRepository.save(account);
     }
 
 }

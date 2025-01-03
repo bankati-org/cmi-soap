@@ -16,27 +16,25 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @AllArgsConstructor
-@XmlRootElement(name = "Transaction")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String externalTransactionId;
-
     @NotNull
-    @Column(name = "sender_account_id")
-    private String senderAccountId;
+    @Column(unique = true)
+    private Long accountId;
 
-    @NotNull
-    @Column(name = "recipient_account_id")
-    private String recipientAccountId;
+    @Column(name = "transaction_type")
+    private String transactionType;
 
     @NotNull
     @Column(name = "amount")
     private Double amount;
+
+    @NotNull
+    private String currency;
 
     @NotNull
     @Column(name = "transaction_date")
@@ -49,10 +47,17 @@ public class Transaction {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "transaction_type")
-    private String transactionType;
+    @NotNull
+    @Column(name = "sender_account_id")
+    private String senderAccountId;
 
-    private String currency;
+    @NotNull
+    @Column(name = "recipient_account_id")
+    private String recipientAccountId;
+
+    private String externalTransactionId;
+
+    private Double fees;
 
     public Transaction() {
 
