@@ -110,7 +110,6 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		<!-- soap -->
-		<!-- Pour Java 11+ -->
 		<dependency>
 			<groupId>jakarta.xml.ws</groupId>
 			<artifactId>jakarta.xml.ws-api</artifactId>
@@ -120,7 +119,6 @@
 			<groupId>wsdl4j</groupId>
 			<artifactId>wsdl4j</artifactId>
 		</dependency>
-
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -188,6 +186,8 @@
 						<source>${project.basedir}/src/main/resources/xsd/payments.xsd</source>
 						<source>${project.basedir}/src/main/resources/xsd/transactions.xsd</source>
 					</sources>
+					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+					<clearOutputDir>false</clearOutputDir>
 				</configuration>
 			</plugin>
 		</plugins>
