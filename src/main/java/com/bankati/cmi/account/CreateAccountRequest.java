@@ -37,42 +37,15 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CreateAccountRequest", propOrder = {
-    "ownerId",
     "ownerCin",
     "currency"
 })
 public class CreateAccountRequest {
 
     @XmlElement(required = true)
-    protected String ownerId;
-    @XmlElement(required = true)
     protected String ownerCin;
     @XmlElement(required = true)
     protected String currency;
-
-    /**
-     * Obtient la valeur de la propriété ownerId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    /**
-     * Définit la valeur de la propriété ownerId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setOwnerId(String value) {
-        this.ownerId = value;
-    }
 
     /**
      * Obtient la valeur de la propriété ownerCin.

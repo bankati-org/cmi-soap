@@ -6,7 +6,6 @@
     <!-- Type complexe pour la requête de création de compte -->
     <xs:complexType name="CreateAccountRequest">
         <xs:sequence>
-            <xs:element name="ownerId" type="xs:string"/>
             <xs:element name="ownerCin" type="xs:string"/>
             <xs:element name="currency" type="xs:string"/>
         </xs:sequence>

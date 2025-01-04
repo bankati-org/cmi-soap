@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -37,10 +36,6 @@ public class Account {
     private Date createdAt;
 
     private Boolean status;
-
-    @NotBlank(message = "Owner ID cannot be blank")
-    @Column(nullable = false,unique = true)
-    private String ownerId; // ID of the user in User Management
 
     @Column(unique = true)
     @NotBlank(message = "CIN cannot be blank")

@@ -44,7 +44,6 @@ public class AccountEndpoint {
         account1.setBalance(account.getBalance());
         account1.setId(account.getId());
         account1.setOwnerCin(account.getOwnerCin());
-        account1.setOwnerId(account.getOwnerId());
         response.setAccount(account1);
         return response;
     }

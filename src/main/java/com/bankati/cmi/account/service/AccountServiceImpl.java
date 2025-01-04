@@ -11,9 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Random;
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
@@ -22,8 +20,8 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     @Override
-    public boolean AccountExist(String cin,String ownerId) {
-        return accountRepository.existsAccountByOwnerCinOrOwnerId(cin,ownerId);
+    public boolean AccountExist(String cin) {
+        return accountRepository.existsAccountByOwnerCin(cin);
     }
 
     @Override
@@ -36,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
         log.info(" creating the payment account for user with cin : {}", validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin());
         ValidateCreateAccountResponse validateCreateAccountResponse = new ValidateCreateAccountResponse();
         CreateAccountResponse createAccountResponse = new CreateAccountResponse();
-        if (AccountExist(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin(), validateCreateAccountRequest.getCreateAccountRequest().getOwnerId())) {
+        if (AccountExist(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin())) {
             createAccountResponse.setMessage("Account already exists for this client !!!");
             createAccountResponse.setStatus("FAILED");
             validateCreateAccountResponse.setCreateAccountResponse(createAccountResponse);
@@ -50,7 +48,6 @@ public class AccountServiceImpl implements AccountService {
                 .createdAt(new Date())
                 .currency(validateCreateAccountRequest.getCreateAccountRequest().getCurrency())
                 .ownerCin(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin())
-                .ownerId(validateCreateAccountRequest.getCreateAccountRequest().getOwnerId())
                 .build();
         try {
             accountRepository.save(account);
@@ -89,9 +86,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Transactional
     @Override
-    public Account updateAccount(String ownerId, Double amount) {
-        Account account = accountRepository.findAccountByOwnerId(ownerId);
-        Double newBalance =  account.getBalance() + amount;
+    public Account updateAccount(String ownerCin, Double amount) {
+        Account account = accountRepository.findAccountByOwnerCin(ownerCin);
+        double newBalance =  account.getBalance() + amount;
         account.setBalance(newBalance);
         return accountRepository.save(account);
     }

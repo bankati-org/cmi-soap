@@ -44,7 +44,6 @@ import jakarta.xml.bind.annotation.XmlType;
     "accountNumber",
     "balance",
     "currency",
-    "ownerId",
     "ownerCin"
 })
 public class Account {
@@ -55,8 +54,6 @@ public class Account {
     protected double balance;
     @XmlElement(required = true)
     protected String currency;
-    @XmlElement(required = true)
-    protected String ownerId;
     @XmlElement(required = true)
     protected String ownerCin;
 
@@ -140,38 +137,6 @@ public class Account {
         this.currency = value;
     }
 
-    /**
-     * Obtient la valeur de la propriété ownerId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    /**
-     * Définit la valeur de la propriété ownerId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setOwnerId(String value) {
-        this.ownerId = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété ownerCin.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getOwnerCin() {
         return ownerCin;
     }
