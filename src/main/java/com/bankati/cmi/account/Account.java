@@ -2,7 +2,7 @@
 // Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 // Voir https://eclipse-ee4j.github.io/jaxb-ri 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2025.01.04 à 03:09:02 AM GMT+01:00 
+// Généré le : 2025.01.05 à 01:46:40 AM GMT+01:00 
 //
 
 
@@ -28,7 +28,6 @@ import jakarta.xml.bind.annotation.XmlType;
  *         &lt;element name="accountNumber" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="balance" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
  *         &lt;element name="currency" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="ownerId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="ownerCin" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
@@ -137,6 +136,14 @@ public class Account {
         this.currency = value;
     }
 
+    /**
+     * Obtient la valeur de la propriété ownerCin.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
     public String getOwnerCin() {
         return ownerCin;
     }

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 // Voir https://eclipse-ee4j.github.io/jaxb-ri 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2025.01.04 à 03:09:02 AM GMT+01:00 
+// Généré le : 2025.01.05 à 01:46:40 AM GMT+01:00 
 //
 
 
@@ -90,6 +90,46 @@ public class ObjectFactory {
      */
     public Account createAccount() {
         return new Account();
+    }
+
+    /**
+     * Create an instance of {@link AccountRechargeRequest }
+     * 
+     */
+    public AccountRechargeRequest createAccountRechargeRequest() {
+        return new AccountRechargeRequest();
+    }
+
+    /**
+     * Create an instance of {@link RechargeRequest }
+     * 
+     */
+    public RechargeRequest createRechargeRequest() {
+        return new RechargeRequest();
+    }
+
+    /**
+     * Create an instance of {@link AccountRechargeResponse }
+     * 
+     */
+    public AccountRechargeResponse createAccountRechargeResponse() {
+        return new AccountRechargeResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechargeResponse }
+     * 
+     */
+    public RechargeResponse createRechargeResponse() {
+        return new RechargeResponse();
+    }
+
+    /**
+     * Create an instance of {@link RechargeTransaction }
+     * 
+     */
+    public RechargeTransaction createRechargeTransaction() {
+        return new RechargeTransaction();
     }
 
 }

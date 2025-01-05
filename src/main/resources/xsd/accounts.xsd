@@ -26,7 +26,6 @@
             <xs:element name="accountNumber" type="xs:string"/>
             <xs:element name="balance" type="xs:double"/>
             <xs:element name="currency" type="xs:string"/>
-            <xs:element name="ownerId" type="xs:string"/>
             <xs:element name="ownerCin" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
@@ -67,4 +66,64 @@
         </xs:complexType>
     </xs:element>
 
+    <!-- Type complexe pour la demande de recharge -->
+    <xs:complexType name="RechargeRequest">
+        <xs:sequence>
+            <xs:element name="ownerCin" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+            <xs:element name="rechargeType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="AGENT"/>
+                        <xs:enumeration value="ADMIN"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="userId" type="xs:string" minOccurs="0"/>
+            <xs:element name="transactionDate" type="xs:dateTime"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour la réponse de recharge -->
+    <xs:complexType name="RechargeResponse">
+        <xs:sequence>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="newBalance" type="xs:double"/>
+            <xs:element name="transactionDate" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour l'historique des recharges -->
+    <xs:complexType name="RechargeTransaction">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="accountNumber" type="xs:string"/>
+            <xs:element name="amount" type="xs:double"/>
+            <xs:element name="rechargeType" type="xs:string"/>
+            <xs:element name="userId" type="xs:string" minOccurs="0"/>
+            <xs:element name="transactionDate" type="xs:dateTime"/>
+            <xs:element name="status" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Élément racine pour la requête de recharge -->
+    <xs:element name="AccountRechargeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rechargeRequest" type="RechargeRequest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Élément racine pour la réponse de recharge -->
+    <xs:element name="AccountRechargeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="rechargeResponse" type="RechargeResponse"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>
