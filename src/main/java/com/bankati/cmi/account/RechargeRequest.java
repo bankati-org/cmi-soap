@@ -2,18 +2,18 @@
 // Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 // Voir https://eclipse-ee4j.github.io/jaxb-ri 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2025.01.05 à 01:46:40 AM GMT+01:00 
+// Généré le : 2025.01.06 à 04:01:25 PM GMT+01:00 
 //
 
 
 package com.bankati.cmi.account;
 
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import jakarta.xml.bind.annotation.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlSchemaType;
+import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
@@ -47,20 +47,15 @@ import lombok.NoArgsConstructor;
  * 
  * 
  */
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "RechargeRequest")
 @XmlType(name = "RechargeRequest", propOrder = {
-        "ownerCin",
-        "amount",
-        "rechargeType",
-        "userId",
-        "transactionDate",
-        "description"
+    "ownerCin",
+    "amount",
+    "rechargeType",
+    "userId",
+    "transactionDate",
+    "description"
 })
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class RechargeRequest {
 
     @XmlElement(required = true)
@@ -76,11 +71,11 @@ public class RechargeRequest {
 
     /**
      * Obtient la valeur de la propriété ownerCin.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getOwnerCin() {
         return ownerCin;
@@ -88,11 +83,11 @@ public class RechargeRequest {
 
     /**
      * Définit la valeur de la propriété ownerCin.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setOwnerCin(String value) {
         this.ownerCin = value;
@@ -100,7 +95,7 @@ public class RechargeRequest {
 
     /**
      * Obtient la valeur de la propriété amount.
-     *
+     * 
      */
     public double getAmount() {
         return amount;
@@ -108,7 +103,7 @@ public class RechargeRequest {
 
     /**
      * Définit la valeur de la propriété amount.
-     *
+     * 
      */
     public void setAmount(double value) {
         this.amount = value;
@@ -116,11 +111,11 @@ public class RechargeRequest {
 
     /**
      * Obtient la valeur de la propriété rechargeType.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getRechargeType() {
         return rechargeType;
@@ -128,11 +123,11 @@ public class RechargeRequest {
 
     /**
      * Définit la valeur de la propriété rechargeType.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setRechargeType(String value) {
         this.rechargeType = value;
@@ -140,11 +135,11 @@ public class RechargeRequest {
 
     /**
      * Obtient la valeur de la propriété userId.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getUserId() {
         return userId;
@@ -152,11 +147,11 @@ public class RechargeRequest {
 
     /**
      * Définit la valeur de la propriété userId.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setUserId(String value) {
         this.userId = value;
@@ -164,11 +159,11 @@ public class RechargeRequest {
 
     /**
      * Obtient la valeur de la propriété transactionDate.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public XMLGregorianCalendar getTransactionDate() {
         return transactionDate;
@@ -176,11 +171,11 @@ public class RechargeRequest {
 
     /**
      * Définit la valeur de la propriété transactionDate.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
-     *
+     *     
      */
     public void setTransactionDate(XMLGregorianCalendar value) {
         this.transactionDate = value;
@@ -188,11 +183,11 @@ public class RechargeRequest {
 
     /**
      * Obtient la valeur de la propriété description.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link String }
-     *
+     *     
      */
     public String getDescription() {
         return description;
@@ -200,11 +195,11 @@ public class RechargeRequest {
 
     /**
      * Définit la valeur de la propriété description.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link String }
-     *
+     *     
      */
     public void setDescription(String value) {
         this.description = value;

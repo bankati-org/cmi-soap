@@ -2,23 +2,24 @@
 // Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 // Voir https://eclipse-ee4j.github.io/jaxb-ri 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2025.01.05 à 01:46:40 AM GMT+01:00 
+// Généré le : 2025.01.06 à 04:01:25 PM GMT+01:00 
 //
 
 
 package com.bankati.cmi.account;
 
-import jakarta.xml.bind.annotation.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
  * <p>Classe Java pour anonymous complex type.
- *
+ * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- *
+ * 
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -30,17 +31,14 @@ import lombok.NoArgsConstructor;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- *
- *
+ * 
+ * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "AccountRechargeRequest", propOrder = {
-        "rechargeRequest"
+@XmlType(name = "", propOrder = {
+    "rechargeRequest"
 })
 @XmlRootElement(name = "AccountRechargeRequest")
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class AccountRechargeRequest {
 
     @XmlElement(required = true)
@@ -48,11 +46,11 @@ public class AccountRechargeRequest {
 
     /**
      * Obtient la valeur de la propriété rechargeRequest.
-     *
+     * 
      * @return
      *     possible object is
      *     {@link RechargeRequest }
-     *
+     *     
      */
     public RechargeRequest getRechargeRequest() {
         return rechargeRequest;
@@ -60,11 +58,11 @@ public class AccountRechargeRequest {
 
     /**
      * Définit la valeur de la propriété rechargeRequest.
-     *
+     * 
      * @param value
      *     allowed object is
      *     {@link RechargeRequest }
-     *
+     *     
      */
     public void setRechargeRequest(RechargeRequest value) {
         this.rechargeRequest = value;

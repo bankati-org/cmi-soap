@@ -2,18 +2,18 @@
 // Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 // Voir https://eclipse-ee4j.github.io/jaxb-ri 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2025.01.05 à 01:46:40 AM GMT+01:00 
+// Généré le : 2025.01.06 à 04:01:25 PM GMT+01:00 
 //
 
 
 package com.bankati.cmi.account;
 
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import jakarta.xml.bind.annotation.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlSchemaType;
+import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
@@ -40,7 +40,6 @@ import lombok.NoArgsConstructor;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "RechargeResponse")
 @XmlType(name = "RechargeResponse", propOrder = {
     "status",
     "message",
@@ -48,9 +47,6 @@ import lombok.NoArgsConstructor;
     "newBalance",
     "transactionDate"
 })
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class RechargeResponse {
 
     @XmlElement(required = true)
