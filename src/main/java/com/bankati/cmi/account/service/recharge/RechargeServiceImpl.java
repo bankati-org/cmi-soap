@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -27,7 +26,6 @@ public class RechargeServiceImpl implements RechargeService {
 
     private static final Logger log = LoggerFactory.getLogger(RechargeServiceImpl.class);
     private final AccountRepository accountRepository;
-
     private final RechargeRepository rechargeRepository;
 
     @Transactional
@@ -45,34 +43,31 @@ public class RechargeServiceImpl implements RechargeService {
             account.setBalance(account.getBalance() + rechargeRequest.getAmount());
             accountRepository.save(account);
 
-            RechargeTransaction rechargeTransaction = RechargeTransaction.builder()
-                    .rechargeType(RechargeType.valueOf(rechargeRequest.getRechargeType()))
-                    .accountNumber(account.getAccountNumber())
-                    .status("SUCCESS")
-                    .transactionId(UUID.randomUUID().toString())
-                    .userId(rechargeRequest.getUserId())
-                    .amount(rechargeRequest.getAmount())
-                    .transactionDate(LocalDateTime.now())
-                    .build();
+            RechargeTransaction rechargeTransaction = new RechargeTransaction();
+            rechargeTransaction.setRechargeType(RechargeType.valueOf(rechargeRequest.getRechargeType()));
+            rechargeTransaction.setAccountNumber(account.getAccountNumber());
+            rechargeTransaction.setStatus("SUCCESS");
+            rechargeTransaction.setTransactionId(UUID.randomUUID().toString());
+            rechargeTransaction.setUserId(rechargeRequest.getUserId());
+            rechargeTransaction.setAmount(rechargeRequest.getAmount());
+            rechargeTransaction.setTransactionDate(LocalDateTime.now());
+
             RechargeTransaction savedOne = rechargeRepository.save(rechargeTransaction);
 
-            RechargeResponse rechargeResponse = RechargeResponse.builder()
-                    .status(savedOne.getStatus())
-                    .message("Recharge successful")
-                    .transactionId(savedOne.getTransactionId())
-                    .newBalance(account.getBalance())
-                    .transactionDate(DateUtils.toXMLGregorianCalendar(savedOne.getTransactionDate()))
-                    .build();
+            RechargeResponse rechargeResponse = new RechargeResponse();
+            rechargeResponse.setStatus(savedOne.getStatus());
+            rechargeResponse.setMessage("Recharge successful");
+            rechargeResponse.setTransactionId(savedOne.getTransactionId());
+            rechargeResponse.setNewBalance(account.getBalance());
+            rechargeResponse.setTransactionDate(DateUtils.toXMLGregorianCalendar(savedOne.getTransactionDate()));
 
-            return AccountRechargeResponse.builder()
-                    .rechargeResponse(rechargeResponse)
-                    .build();
+            AccountRechargeResponse response = new AccountRechargeResponse();
+            response.setRechargeResponse(rechargeResponse);
+            return response;
 
         } catch (Exception e) {
             log.error("Error during recharge process", e);
             throw e;
         }
     }
-
-
 }
