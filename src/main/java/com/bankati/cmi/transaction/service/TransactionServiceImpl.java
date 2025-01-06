@@ -1,9 +1,13 @@
 package com.bankati.cmi.transaction.service;
 
 import com.bankati.cmi.account.service.AccountService;
+import com.bankati.cmi.exceptions.TransactionException;
 import com.bankati.cmi.transaction.dto.TransactionDto;
+import com.bankati.cmi.transaction.enums.TransactionStatus;
 import com.bankati.cmi.transaction.mapper.TransactionMapper;
+import com.bankati.cmi.transaction.model.Transaction;
 import com.bankati.cmi.transaction.repository.TransactionRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +41,33 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionDto> getTransactions(String accountNumber) {
-        return transactionRepository.findTransactionsByRecipientAccountIdOrSenderAccountId(accountNumber, accountNumber)
-                .stream().map(transactionMapper::toDTO).toList();
+    @Transactional
+    public Transaction createTransaction(Transaction transaction) {
+        transaction.setTransactionDate(LocalDateTime.now());
+        transaction.setStatus(TransactionStatus.PENDING);
+
+        return transactionRepository.save(transaction);
     }
+
+    @Override
+    public List<Transaction> getTransactionsByAccountId(Long accountId) {
+        return transactionRepository.findByAccountId(accountId);
+    }
+
+    @Override
+    public List<Transaction> getTransactionsBySenderAccountNumber(String senderAccountNumber) {
+        return transactionRepository.findBySenderAccountNumber(senderAccountNumber);
+    }
+
+    @Override
+    public List<Transaction> getTransactionsByRecipientAccountNumber(String recipientAccountNumber) {
+        return transactionRepository.findByRecipientAccountNumber(recipientAccountNumber);
+    }
+
+    @Override
+    public Transaction getTransactionById(Long transactionId) {
+        return transactionRepository.findById(transactionId)
+                .orElseThrow(() -> new TransactionException("Transaction not found"));
+    }
+
 }

@@ -7,6 +7,11 @@ import java.util.List;
 
 public interface TransactionService {
     TransactionDto processTransaction(TransactionDto transaction);
-    List<TransactionDto> getTransactions(String accountNumber);
+
+    Transaction createTransaction(Transaction transaction);
+    List<Transaction> getTransactionsByAccountId(Long accountId);
+    List<Transaction> getTransactionsBySenderAccountNumber(String senderAccountNumber);
+    List<Transaction> getTransactionsByRecipientAccountNumber(String recipientAccountNumber);
+    Transaction getTransactionById(Long transactionId);
 }
 

@@ -18,7 +18,6 @@
     <xs:complexType name="Transaction">
         <xs:sequence>
             <xs:element name="id" type="xs:long" minOccurs="0"/>
-            <xs:element name="externalTransactionId" type="xs:string" minOccurs="0"/>
             <xs:element name="senderAccountId" type="xs:string"/>
             <xs:element name="recipientAccountId" type="xs:string"/>
             <xs:element name="amount" type="xs:double"/>

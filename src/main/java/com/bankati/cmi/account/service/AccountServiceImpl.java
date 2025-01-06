@@ -5,6 +5,8 @@ import com.bankati.cmi.account.ValidateCreateAccountRequest;
 import com.bankati.cmi.account.ValidateCreateAccountResponse;
 import com.bankati.cmi.account.model.Account;
 import com.bankati.cmi.account.repository.AccountRepository;
+import com.bankati.cmi.adapter.WalletAdapter;
+import com.bankati.cmi.dto.CreateWalletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
+    private final WalletAdapter walletAdapter;
     private static final Logger log = LoggerFactory.getLogger(AccountServiceImpl.class);
     private final AccountRepository accountRepository;
 
@@ -27,7 +30,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public ValidateCreateAccountResponse createAccount(ValidateCreateAccountRequest validateCreateAccountRequest) {
         String accountNumber;
-        // Boucle pour générer un numéro unique
         do {
             accountNumber = generateRandom16Digits();
         } while (accountRepository.existsByAccountNumber(accountNumber)); // Vérifie si le numéro existe
@@ -50,7 +52,12 @@ public class AccountServiceImpl implements AccountService {
                 .ownerCin(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin())
                 .build();
         try {
-            accountRepository.save(account);
+            Account account1 = accountRepository.save(account);
+            walletAdapter.createWallet(
+                    CreateWalletRequest.builder()
+                            .userId(account1.getId())
+                            .defaultCurrency(account1.getCurrency())
+                            .build());
             createAccountResponse.setStatus("SUCCESS");
             createAccountResponse.setMessage("Account created successfully");
             validateCreateAccountResponse.setCreateAccountResponse(createAccountResponse);

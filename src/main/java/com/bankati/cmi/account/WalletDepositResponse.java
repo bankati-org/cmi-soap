@@ -2,11 +2,11 @@
 // Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 // Voir https://eclipse-ee4j.github.io/jaxb-ri 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2025.01.06 à 04:01:25 PM GMT+01:00 
+// Généré le : 2025.01.06 à 08:38:56 PM GMT+01:00 
 //
 
 
-package com.bankati.cmi.transaction;
+package com.bankati.cmi.account;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -25,7 +25,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="transaction" type="{http://bankati.com/cmi/transaction}Transaction"/&gt;
+ *         &lt;element name="depositResponse" type="{http://www.bankati.com/cmi/account}DepositResponse"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +36,36 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "transaction"
+    "depositResponse"
 })
-@XmlRootElement(name = "ProcessTransactionResponse")
-public class ProcessTransactionResponse {
+@XmlRootElement(name = "WalletDepositResponse")
+public class WalletDepositResponse {
 
     @XmlElement(required = true)
-    protected Transaction transaction;
+    protected DepositResponse depositResponse;
 
     /**
-     * Obtient la valeur de la propriété transaction.
+     * Obtient la valeur de la propriété depositResponse.
      * 
      * @return
      *     possible object is
-     *     {@link Transaction }
+     *     {@link DepositResponse }
      *     
      */
-    public Transaction getTransaction() {
-        return transaction;
+    public DepositResponse getDepositResponse() {
+        return depositResponse;
     }
 
     /**
-     * Définit la valeur de la propriété transaction.
+     * Définit la valeur de la propriété depositResponse.
      * 
      * @param value
      *     allowed object is
-     *     {@link Transaction }
+     *     {@link DepositResponse }
      *     
      */
-    public void setTransaction(Transaction value) {
-        this.transaction = value;
+    public void setDepositResponse(DepositResponse value) {
+        this.depositResponse = value;
     }
 
 }

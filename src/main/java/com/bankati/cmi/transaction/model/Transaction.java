@@ -2,13 +2,12 @@ package com.bankati.cmi.transaction.model;
 
 import com.bankati.cmi.transaction.enums.TransactionStatus;
 import jakarta.persistence.*;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -49,15 +48,11 @@ public class Transaction {
 
     @NotNull
     @Column(name = "sender_account_id")
-    private String senderAccountId;
+    private String senderAccountNumber;
 
     @NotNull
     @Column(name = "recipient_account_id")
-    private String recipientAccountId;
-
-    private String externalTransactionId;
-
-    private Double fees;
+    private String recipientAccountNumber;
 
     public Transaction() {
 

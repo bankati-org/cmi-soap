@@ -26,9 +26,4 @@ public class TransactionEndpoint {
         return transactionService.processTransaction(transaction);
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetTransactions")
-    @ResponsePayload
-    public List<TransactionDto> getTransactions(@RequestPayload String accountNumber) {
-        return transactionService.getTransactions(accountNumber);
-    }
 }

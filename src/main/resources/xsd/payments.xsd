@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://bankati.com/cmi/payment"
-           targetNamespace="http://bankati.com/cmi/payment"
+           xmlns:tns="http://bankati.com/cmi/transaction"
+           targetNamespace="http://bankati.com/cmi/transaction"
            elementFormDefault="qualified">
 
-    <!-- Type complexe pour PaymentRequest -->
-    <xs:complexType name="PaymentRequest">
+    <!-- Type complexe pour TransactionRequest -->
+    <xs:complexType name="TransactionRequest">
         <xs:sequence>
-            <xs:element name="sourceAccount" type="xs:string"/>
-            <xs:element name="targetAccount" type="xs:string"/>
-            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="senderAccountId" type="xs:string"/>
+            <xs:element name="recipientAccountId" type="xs:string"/>
             <xs:element name="amount" type="xs:double"/>
-            <xs:element name="paymentType" type="xs:string"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="transactionType" type="xs:string"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Type complexe pour PaymentResponse -->
-    <xs:complexType name="PaymentResponse">
+    <!-- Type complexe pour TransactionResponse -->
+    <xs:complexType name="TransactionResponse">
         <xs:sequence>
-            <xs:element name="status" type="xs:string"/>
+            <xs:element name="status" type="tns:TransactionStatus"/>
             <xs:element name="message" type="xs:string"/>
+            <xs:element name="transactionId" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Élément de requête pour la validation de paiement -->
-    <xs:element name="validatePaymentRequest">
+    <!-- Type pour TransactionStatus -->
+    <xs:simpleType name="TransactionStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="COMPLETED"/>
+            <xs:enumeration value="FAILED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Élément de requête pour la validation de transaction -->
+    <xs:element name="validateTransactionRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="paymentRequest" type="tns:PaymentRequest"/>
+                <xs:element name="transactionRequest" type="tns:TransactionRequest"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <!-- Élément de réponse pour la validation de paiement -->
-    <xs:element name="validatePaymentResponse">
+    <!-- Élément de réponse pour la validation de transaction -->
+    <xs:element name="validateTransactionResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="paymentResponse" type="tns:PaymentResponse"/>
+                <xs:element name="transactionResponse" type="tns:TransactionResponse"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

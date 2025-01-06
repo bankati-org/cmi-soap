@@ -1,13 +1,12 @@
 package com.bankati.cmi.account.service.recharge;
 
-import com.bankati.cmi.account.AccountRechargeRequest;
-import com.bankati.cmi.account.AccountRechargeResponse;
-import com.bankati.cmi.account.RechargeRequest;
-import com.bankati.cmi.account.RechargeResponse;
+import com.bankati.cmi.account.*;
 import com.bankati.cmi.account.model.Account;
 import com.bankati.cmi.account.model.RechargeTransaction;
 import com.bankati.cmi.account.repository.AccountRepository;
 import com.bankati.cmi.account.repository.RechargeRepository;
+import com.bankati.cmi.adapter.WalletAdapter;
+import com.bankati.cmi.dto.depositRequest;
 import com.bankati.cmi.enums.RechargeType;
 import com.bankati.cmi.utils.DateUtils;
 import com.bankati.cmi.utils.ValidationUtils;
@@ -17,13 +16,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class RechargeServiceImpl implements RechargeService {
-
+    private final WalletAdapter walletAdapter;
     private static final Logger log = LoggerFactory.getLogger(RechargeServiceImpl.class);
     private final AccountRepository accountRepository;
     private final RechargeRepository rechargeRepository;
@@ -69,5 +69,22 @@ public class RechargeServiceImpl implements RechargeService {
             log.error("Error during recharge process", e);
             throw e;
         }
+    }
+
+    @Override
+    public WalletDepositResponse depositToWallet(WalletDepositRequest walletDepositRequest) {
+        log.info("Start deposit to wallet for user: {}", walletDepositRequest.getDepositRequest().getOwnerCin());
+        ValidationUtils.validateDepositRequest(walletDepositRequest.getDepositRequest());
+        Account account = accountRepository.findAccountByOwnerCin(walletDepositRequest.getDepositRequest().getOwnerCin());
+        if (account != null) {
+            walletAdapter.depositToWallet(new depositRequest(account.getId(), walletDepositRequest.getDepositRequest().getBalance()));
+        } else {
+            try {
+                throw new AccountNotFoundException("Account not found for CIN: " + walletDepositRequest.getDepositRequest().getOwnerCin());
+            } catch (AccountNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return new WalletDepositResponse();
     }
 }

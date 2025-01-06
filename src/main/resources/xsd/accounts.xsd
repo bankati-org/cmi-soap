@@ -126,4 +126,41 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <!-- New type for deposit request -->
+    <xs:complexType name="DepositRequest">
+        <xs:sequence>
+            <xs:element name="ownerCin" type="xs:string"/>
+            <xs:element name="balance" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- New type for deposit response -->
+    <xs:complexType name="DepositResponse">
+        <xs:sequence>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="newBalance" type="xs:double"/>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="transactionDate" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Root elements for deposit operation -->
+    <xs:element name="WalletDepositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="depositRequest" type="DepositRequest"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="WalletDepositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="depositResponse" type="DepositResponse"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
 </xs:schema>

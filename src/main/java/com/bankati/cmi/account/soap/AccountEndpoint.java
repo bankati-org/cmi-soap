@@ -53,6 +53,12 @@ public class AccountEndpoint {
         return response;
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "WalletDepositRequest")
+    @ResponsePayload
+    public WalletDepositResponse depositToWallet(@RequestPayload WalletDepositRequest request) {
+        return rechargeService.depositToWallet(request);
+    }
+
 
 
 
