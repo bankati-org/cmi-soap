@@ -5,15 +5,48 @@
 Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 Voir https://eclipse-ee4j.github.io/jaxb-ri 
 Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-Généré le : 2024.12.31 à 10:58:42 PM GMT+01:00 
+Généré le : 2025.01.05 à 01:46:40 AM GMT+01:00 
 
   -->
   <bindings scd="x-schema::tns" xmlns:tns="http://www.bankati.com/cmi/account">
     <schemaBindings map="false">
       <package name="com.bankati.cmi.account"/>
     </schemaBindings>
-    <bindings scd="tns:account">
+    <bindings scd="tns:ValidateCreateAccountRequest">
+      <class ref="com.bankati.cmi.account.ValidateCreateAccountRequest"/>
+    </bindings>
+    <bindings scd="~tns:CreateAccountRequest">
+      <class ref="com.bankati.cmi.account.CreateAccountRequest"/>
+    </bindings>
+    <bindings scd="tns:ValidateCreateAccountResponse">
+      <class ref="com.bankati.cmi.account.ValidateCreateAccountResponse"/>
+    </bindings>
+    <bindings scd="~tns:CreateAccountResponse">
+      <class ref="com.bankati.cmi.account.CreateAccountResponse"/>
+    </bindings>
+    <bindings scd="tns:GetAccountDetailsRequest">
+      <class ref="com.bankati.cmi.account.GetAccountDetailsRequest"/>
+    </bindings>
+    <bindings scd="tns:GetAccountDetailsResponse">
+      <class ref="com.bankati.cmi.account.GetAccountDetailsResponse"/>
+    </bindings>
+    <bindings scd="~tns:Account">
       <class ref="com.bankati.cmi.account.Account"/>
+    </bindings>
+    <bindings scd="tns:AccountRechargeRequest">
+      <class ref="com.bankati.cmi.account.AccountRechargeRequest"/>
+    </bindings>
+    <bindings scd="~tns:RechargeRequest">
+      <class ref="com.bankati.cmi.account.RechargeRequest"/>
+    </bindings>
+    <bindings scd="tns:AccountRechargeResponse">
+      <class ref="com.bankati.cmi.account.AccountRechargeResponse"/>
+    </bindings>
+    <bindings scd="~tns:RechargeResponse">
+      <class ref="com.bankati.cmi.account.RechargeResponse"/>
+    </bindings>
+    <bindings scd="~tns:RechargeTransaction">
+      <class ref="com.bankati.cmi.account.RechargeTransaction"/>
     </bindings>
   </bindings>
   <bindings scd="x-schema::tns" xmlns:tns="http://bankati.com/cmi/payment">

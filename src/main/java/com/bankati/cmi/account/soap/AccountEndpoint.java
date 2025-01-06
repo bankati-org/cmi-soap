@@ -1,12 +1,10 @@
 package com.bankati.cmi.account.soap;
 
 
-import com.bankati.cmi.account.GetAccountDetailsRequest;
-import com.bankati.cmi.account.GetAccountDetailsResponse;
-import com.bankati.cmi.account.ValidateCreateAccountRequest;
-import com.bankati.cmi.account.ValidateCreateAccountResponse;
+import com.bankati.cmi.account.*;
 import com.bankati.cmi.account.model.Account;
 import com.bankati.cmi.account.service.AccountServiceImpl;
+import com.bankati.cmi.account.service.recharge.RechargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -17,10 +15,11 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 public class AccountEndpoint {
     private static final String NAMESPACE_URI = "http://www.bankati.com/cmi/account";
     private final AccountServiceImpl accountService;
-
+    private final RechargeService rechargeService;
     @Autowired
-    public AccountEndpoint(AccountServiceImpl accountService) {
+    public AccountEndpoint(AccountServiceImpl accountService, RechargeService rechargeService) {
         this.accountService = accountService;
+        this.rechargeService = rechargeService;
     }
 
     /**
@@ -34,6 +33,12 @@ public class AccountEndpoint {
         return accountService.createAccount(validateCreateAccountRequest);
     }
 
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "AccountRechargeRequest")
+    @ResponsePayload
+    public AccountRechargeResponse rechargeAccount(@RequestPayload AccountRechargeRequest request) {
+        return rechargeService.processRecharge(request);
+    }
+
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAccountDetailsRequest")
     @ResponsePayload
     public GetAccountDetailsResponse getAccountDetails(@RequestPayload GetAccountDetailsRequest request) {
@@ -44,10 +49,11 @@ public class AccountEndpoint {
         account1.setBalance(account.getBalance());
         account1.setId(account.getId());
         account1.setOwnerCin(account.getOwnerCin());
-        account1.setOwnerId(account.getOwnerId());
         response.setAccount(account1);
         return response;
     }
+
+
 
 
 }

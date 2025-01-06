@@ -1,5 +1,6 @@
 package com.bankati.cmi.PaymentValidator.dto;
 
+import com.bankati.cmi.PaymentValidator.enums.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +13,6 @@ public class PaymentRequestDTO {
     private String targetAccount;
     private String currency;
     private double amount;
+    private PaymentType paymentType;
 }
 

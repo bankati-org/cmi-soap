@@ -5,12 +5,13 @@ import com.bankati.cmi.account.ValidateCreateAccountRequest;
 import com.bankati.cmi.account.ValidateCreateAccountResponse;
 import com.bankati.cmi.account.model.Account;
 import com.bankati.cmi.account.repository.AccountRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
+import java.util.Date;
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
@@ -19,8 +20,8 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     @Override
-    public boolean AccountExist(String cin,String ownerId) {
-        return accountRepository.existsAccountByOwnerCinOrOwnerId(cin,ownerId);
+    public boolean AccountExist(String cin) {
+        return accountRepository.existsAccountByOwnerCin(cin);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
         log.info(" creating the payment account for user with cin : {}", validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin());
         ValidateCreateAccountResponse validateCreateAccountResponse = new ValidateCreateAccountResponse();
         CreateAccountResponse createAccountResponse = new CreateAccountResponse();
-        if (AccountExist(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin(), validateCreateAccountRequest.getCreateAccountRequest().getOwnerId())) {
+        if (AccountExist(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin())) {
             createAccountResponse.setMessage("Account already exists for this client !!!");
             createAccountResponse.setStatus("FAILED");
             validateCreateAccountResponse.setCreateAccountResponse(createAccountResponse);
@@ -44,9 +45,9 @@ public class AccountServiceImpl implements AccountService {
         Account account = Account.builder()
                 .accountNumber(accountNumber)
                 .balance(0.0)
+                .createdAt(new Date())
                 .currency(validateCreateAccountRequest.getCreateAccountRequest().getCurrency())
                 .ownerCin(validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin())
-                .ownerId(validateCreateAccountRequest.getCreateAccountRequest().getOwnerId())
                 .build();
         try {
             accountRepository.save(account);
@@ -78,9 +79,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public static String generateRandom16Digits() {
-        Random random = new Random();
         long firstPart = (long) (Math.random() * 9_000_000_000_000_000L) + 1_000_000_000_000_000L;
         return String.valueOf(firstPart);
+    }
+
+
+    @Transactional
+    @Override
+    public Account updateAccount(String ownerCin, Double amount) {
+        Account account = accountRepository.findAccountByOwnerCin(ownerCin);
+        double newBalance =  account.getBalance() + amount;
+        account.setBalance(newBalance);
+        return accountRepository.save(account);
     }
 
 }
