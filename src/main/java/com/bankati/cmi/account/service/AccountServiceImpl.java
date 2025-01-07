@@ -44,6 +44,7 @@ public class AccountServiceImpl implements AccountService {
         log.info("Account not existing for client with cin {}", validateCreateAccountRequest.getCreateAccountRequest().getOwnerCin());
         Account account = Account.builder()
                 .accountNumber(accountNumber)
+                .status("ACTIVE")
                 .balance(0.0)
                 .createdAt(new Date())
                 .currency(validateCreateAccountRequest.getCreateAccountRequest().getCurrency())
