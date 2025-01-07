@@ -35,7 +35,7 @@ public class Account {
     @NotNull(message = "Date creation cannot be null")
     private Date createdAt;
 
-    private Boolean status;
+    private String status;
 
     @Column(unique = true)
     @NotBlank(message = "CIN cannot be blank")

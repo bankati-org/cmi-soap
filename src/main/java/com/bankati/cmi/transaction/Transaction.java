@@ -2,7 +2,7 @@
 // Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
 // Voir https://eclipse-ee4j.github.io/jaxb-ri 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2025.01.06 à 04:01:25 PM GMT+01:00 
+// Généré le : 2025.01.07 à 01:27:52 AM GMT+01:00 
 //
 
 
@@ -27,9 +27,8 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/&gt;
- *         &lt;element name="externalTransactionId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="senderAccountId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
- *         &lt;element name="recipientAccountId" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="senderAccountNumber" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="recipientAccountNumber" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="amount" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
  *         &lt;element name="transactionDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
  *         &lt;element name="status" type="{http://bankati.com/cmi/transaction}TransactionStatus"/&gt;
@@ -47,9 +46,8 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Transaction", propOrder = {
     "id",
-    "externalTransactionId",
-    "senderAccountId",
-    "recipientAccountId",
+    "senderAccountNumber",
+    "recipientAccountNumber",
     "amount",
     "transactionDate",
     "status",
@@ -60,11 +58,10 @@ import jakarta.xml.bind.annotation.XmlType;
 public class Transaction {
 
     protected Long id;
-    protected String externalTransactionId;
     @XmlElement(required = true)
-    protected String senderAccountId;
+    protected String senderAccountNumber;
     @XmlElement(required = true)
-    protected String recipientAccountId;
+    protected String recipientAccountNumber;
     protected double amount;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
@@ -101,75 +98,51 @@ public class Transaction {
     }
 
     /**
-     * Obtient la valeur de la propriété externalTransactionId.
+     * Obtient la valeur de la propriété senderAccountNumber.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getExternalTransactionId() {
-        return externalTransactionId;
+    public String getSenderAccountNumber() {
+        return senderAccountNumber;
     }
 
     /**
-     * Définit la valeur de la propriété externalTransactionId.
+     * Définit la valeur de la propriété senderAccountNumber.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setExternalTransactionId(String value) {
-        this.externalTransactionId = value;
+    public void setSenderAccountNumber(String value) {
+        this.senderAccountNumber = value;
     }
 
     /**
-     * Obtient la valeur de la propriété senderAccountId.
+     * Obtient la valeur de la propriété recipientAccountNumber.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSenderAccountId() {
-        return senderAccountId;
+    public String getRecipientAccountNumber() {
+        return recipientAccountNumber;
     }
 
     /**
-     * Définit la valeur de la propriété senderAccountId.
+     * Définit la valeur de la propriété recipientAccountNumber.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSenderAccountId(String value) {
-        this.senderAccountId = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété recipientAccountId.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRecipientAccountId() {
-        return recipientAccountId;
-    }
-
-    /**
-     * Définit la valeur de la propriété recipientAccountId.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRecipientAccountId(String value) {
-        this.recipientAccountId = value;
+    public void setRecipientAccountNumber(String value) {
+        this.recipientAccountNumber = value;
     }
 
     /**
