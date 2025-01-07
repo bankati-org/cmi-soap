@@ -72,5 +72,4 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         wsdl.setSchema(accountSchema);
         return wsdl;
     }
-
 }
