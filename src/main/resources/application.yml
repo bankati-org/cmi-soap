@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cmi-ms
+    name: Cmi-ms
     admin:
       enabled: false
   jmx:
