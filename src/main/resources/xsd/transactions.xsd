@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://bankati.com/cmi/transaction"
+           xmlns="http://bankati.com/cmi/transaction"
            targetNamespace="http://bankati.com/cmi/transaction"
            elementFormDefault="qualified">
 
@@ -18,12 +17,11 @@
     <xs:complexType name="Transaction">
         <xs:sequence>
             <xs:element name="id" type="xs:long" minOccurs="0"/>
-            <xs:element name="externalTransactionId" type="xs:string" minOccurs="0"/>
-            <xs:element name="senderAccountId" type="xs:string"/>
-            <xs:element name="recipientAccountId" type="xs:string"/>
+            <xs:element name="senderAccountNumber" type="xs:string"/>
+            <xs:element name="recipientAccountNumber" type="xs:string"/>
             <xs:element name="amount" type="xs:double"/>
             <xs:element name="transactionDate" type="xs:dateTime"/>
-            <xs:element name="status" type="tns:TransactionStatus"/>
+            <xs:element name="status" type="TransactionStatus"/>  <!-- Changed from tns:TransactionStatus -->
             <xs:element name="description" type="xs:string" minOccurs="0"/>
             <xs:element name="transactionType" type="xs:string" minOccurs="0"/>
             <xs:element name="currency" type="xs:string" minOccurs="0"/>
@@ -34,7 +32,7 @@
     <xs:element name="ProcessTransactionRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="transaction" type="tns:Transaction"/>
+                <xs:element name="transaction" type="Transaction"/>  <!-- Changed from tns:Transaction -->
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -42,7 +40,7 @@
     <xs:element name="ProcessTransactionResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="transaction" type="tns:Transaction"/>
+                <xs:element name="transaction" type="Transaction"/>  <!-- Changed from tns:Transaction -->
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -59,7 +57,7 @@
     <xs:element name="GetTransactionsResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="transaction" type="tns:Transaction" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="transaction" type="Transaction" minOccurs="0" maxOccurs="unbounded"/>  <!-- Changed from tns:Transaction -->
             </xs:sequence>
         </xs:complexType>
     </xs:element>

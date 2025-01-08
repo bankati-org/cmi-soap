@@ -9,5 +9,7 @@ import org.mapstruct.Mapping;
 public interface TransactionMapper {
     TransactionDto toDTO(Transaction transaction);
     @Mapping(target = "id",ignore = true)
-    Transaction toEntity(TransactionDto transactionDto);
+    Transaction toCmiEntity(TransactionDto transactionDto);
+
+    com.bankati.cmi.transaction.Transaction toCmiEntity(Transaction transaction);
 }

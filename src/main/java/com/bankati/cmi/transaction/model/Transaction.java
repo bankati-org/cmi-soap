@@ -23,7 +23,6 @@ public class Transaction {
     private Long id;
 
     @NotNull
-    @Column(unique = true)
     private Long accountId;
 
     @Column(name = "transaction_type")
@@ -49,11 +48,11 @@ public class Transaction {
 
     @NotNull
     @Column(name = "sender_account_id")
-    private String senderAccountId;
+    private String senderAccountNumber;
 
     @NotNull
     @Column(name = "recipient_account_id")
-    private String recipientAccountId;
+    private String recipientAccountNumber;
 
     private String externalTransactionId;
 

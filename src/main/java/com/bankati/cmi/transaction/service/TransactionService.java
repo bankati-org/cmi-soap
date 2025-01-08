@@ -1,12 +1,13 @@
 package com.bankati.cmi.transaction.service;
 
+import com.bankati.cmi.transaction.ProcessTransactionRequest;
+import com.bankati.cmi.transaction.ProcessTransactionResponse;
 import com.bankati.cmi.transaction.dto.TransactionDto;
-import com.bankati.cmi.transaction.model.Transaction;
 
 import java.util.List;
 
 public interface TransactionService {
-    TransactionDto processTransaction(TransactionDto transaction);
+    ProcessTransactionResponse processTransaction(ProcessTransactionRequest processTransactionRequest);
     List<TransactionDto> getTransactions(String accountNumber);
 }
 
